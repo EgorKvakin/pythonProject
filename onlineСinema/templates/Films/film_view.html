@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}Главная{% endblock %}
+
+{% block content %}
+
+<div class="container float-left">
+    <h1 class="h1 text-light">{{ film.film_title }}</h1>
+    <p class="  text-light">Дата выхода : {{ film.film_year }}</p>
+</div>
+<div class="card" style="width: 18rem;">
+    <img class="card-img-top" src="{{ film.film_preview }}" alt="Card image cap">
+    <div class="card-body">
+        <h5 class="card-title">{{ film.film_title }}</h5>
+        <p class="card-text"></p>
+        <a href="#" class=" ">Жанр : {{ film.film_catergory }}</a>
+    </div>
+</div>
+{% endblock %}
