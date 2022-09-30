@@ -4,16 +4,12 @@
 
 {% block content %}
 
-<div class="container float-left">
-    <h1 class="h1 text-light">{{ film.film_title }}</h1>
-    <p class="  text-light">Дата выхода : {{ film.film_year }}</p>
-</div>
-<div class="card" style="width: 18rem;">
-    <img class="card-img-top" src="{{ film.film_preview }}" alt="Card image cap">
+<div class="card float-left bg-light" style="width: 30rem;">
+    <img class="card-img-top" src="{{ MEDIA_URL }}{{ film.film_preview }}" alt="Card image cap">
     <div class="card-body">
         <h5 class="card-title">{{ film.film_title }}</h5>
-        <p class="card-text"></p>
-        <a href="#" class=" ">Жанр : {{ film.film_catergory }}</a>
+        <p class="card-text">Год выхода : {{ film.film_year }}</p>
+        <a href="#" class=" ">{{ film.film_catergory }}</a>
     </div>
 </div>
 {% endblock %}
