@@ -7,6 +7,8 @@ class Film(models.Model):
     film_catergory = models.CharField('Категория фильма', max_length = 200)
     film_year = models.CharField('Дата выхода фильма', max_length = 50)
     film_type = models.CharField('Тип', max_length = 50)
+    description = models.TextField()
+
 
     def __str__(self):
         return self.film_title
