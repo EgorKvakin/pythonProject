@@ -3,13 +3,32 @@
 {% block title %}Главная{% endblock %}
 
 {% block content %}
-
-<div class="card float-left bg-light" style="width: 30rem;">
-    <img class="card-img-top" src="{{ MEDIA_URL }}{{ film.film_preview }}" alt="Card image cap">
-    <div class="card-body">
-        <h5 class="card-title">{{ film.film_title }}</h5>
-        <p class="card-text">Год выхода : {{ film.film_year }}</p>
-        <a href="#" class=" ">{{ film.film_catergory }}</a>
+<div class="container d-flex p-2">
+    <div class="card float-left bg-light " style="width: 25rem;">
+        <img class="card-img-top" src="{{ MEDIA_URL }}{{ film.film_preview }}" alt="Card image cap">
     </div>
+    <div class="container d-flex p-2">
+        <ul>
+            <h5 class="h5 text-white">{{ film.film_title }}</h5>
+            <p class="text-white">Год выхода : {{ film.film_year }}</p>
+            <p class="text-white">Актеры : {{ film.actors }}</p>
+            <p class="text-white">Жанр : <a href="#" class=" ">{{ film.film_catergory }}</a></p>
+            <p class="text-white text-left">{{ film.description }}</p>
+        </ul>
+    </div>
+</div>
+<div class="container d-flex p-2">
+    <video
+            id="my-video"
+            class="video-js"
+            controls
+            preload="auto"
+            width="1000"
+            height="800"
+            poster="{{ MEDIA_URL }}{{ film.film_preview }}"
+            data-setup="{}"
+    >
+        <source src="{{ MEDIA_URL }}{{ film.film_file }}" type="video/mp4"/>
+    </video>
 </div>
 {% endblock %}
