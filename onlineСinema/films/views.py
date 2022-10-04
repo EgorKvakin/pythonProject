@@ -26,7 +26,7 @@ def actorCard(request,pk):
         actor = Actor.objects.get(pk=pk)
     except:
         raise Http404("Актер не найден")
-    films = Film.objects.filter(film_title = actor.actor_film_list)
+    films = Actor.objects.get(pk=pk).actor_film_list.all()
     today = datetime.today()
     year = today.year - actor.birthday.year
     return render(request, 'Films/actor_card.html', {'actor':actor , 'films':films , 'year':year})

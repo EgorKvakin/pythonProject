@@ -20,7 +20,7 @@ class Actor(models.Model):
     name = models.CharField('Имя',max_length = 300)
     surname = models.CharField('Фамилия',max_length = 300)
     actor_photo = models.ImageField('Фото актера',upload_to = 'images/actors')
-    actor_film_list = models.ForeignKey('Film', on_delete = models.CASCADE)
+    actor_film_list = models.ManyToManyField('Film')
     birthday = models.DateField('День рожденья',null=True)
     def __str__(self):
         return self.name
