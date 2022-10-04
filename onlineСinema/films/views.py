@@ -11,10 +11,10 @@ class FilmView(ListView):
     template_name = 'main.html'
 
 
-def MovieView(request, pk):
+def movieView(request, pk):
     try:
         film = Film.objects.get(id=pk)
     except:
         raise Http404("Фильм не найден!")
-
-    return render(request, 'Films/film_view.html', {'film': film})
+    categories = getattr(film, 'film_catergory').split(',')
+    return render(request, 'Films/film_view.html', {'film': film , 'categories': categories})
