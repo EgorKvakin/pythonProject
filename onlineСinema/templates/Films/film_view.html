@@ -20,7 +20,7 @@
             </p>
             <p class="text-white">Жанр :
                 {% for category in categories %}
-                    <a href="#" class=" ">{{ category }}
+                    <a href="{% url 'category' category.pk %}" class=" ">{{ category.category }}
                     </a>
                 {% endfor %}
             </p>

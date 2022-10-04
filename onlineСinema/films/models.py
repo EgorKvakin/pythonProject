@@ -24,3 +24,9 @@ class Actor(models.Model):
     birthday = models.DateField('День рожденья',null=True)
     def __str__(self):
         return self.name
+
+class Categories(models.Model):
+    category = models.CharField('Название',max_length = 300)
+    film_list = models.ManyToManyField('Film')
+    def __str__(self):
+        return self.category

@@ -23,7 +23,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include('films.urls')),
     path('film/<int:pk>/',include('films.urls')),
-    path('actor/<int:pk>/',include('films.urls'))
+    path('actor/<int:pk>/',include('films.urls')),
+    path('category/<int:pk>/',include('films.urls'))
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
