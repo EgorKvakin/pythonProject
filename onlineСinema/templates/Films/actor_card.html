@@ -3,7 +3,7 @@
 {% block title %}{{actor.name}}{% endblock %}
 {% block content %}
 <div class="container d-flex p-2">
-    <div class="card d-flex p-2" style="width: 100rem;">
+    <div class="card d-flex p-2" style="width: 25rem;">
         <img class="card-img-top" src="{{ MEDIA_URL }}{{ actor.actor_photo }}" alt="Card image cap">
         <div class="card-body">
         </div>
@@ -14,12 +14,14 @@
             <p class="text-white">День рождения : {{ actor.birthday }}({{ year }} лет)</p>
         </ul>
     </div>
-    <div class="container d-flex p-2">
-        <p>Снимался в фильмах:</p>
-        {%for film in object_list %}
+</div>
+<div class="d-flex p-2">
+    <div class="container">
+        <p class="text-white d-flex p-2">Снимался в фильмах : </p>
+        {%for film in films %}
         <div class="d-inline-flex p-2">
             <a href="{% url 'movie_view' film.pk %}">
-                <img src="{{ film.film_preview }}" width="300" height="450" class="rounded">
+                <img src="{{ MEDIA_URL }}{{ film.film_preview }}" width="300" height="450" class="rounded">
             </a>
         </div>
         {% endfor %}
