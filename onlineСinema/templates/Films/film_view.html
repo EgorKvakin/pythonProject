@@ -11,7 +11,13 @@
         <ul>
             <h5 class="h5 text-white">{{ film.film_title }}</h5>
             <p class="text-white">Год выхода : {{ film.film_year }}</p>
-            <p class="text-white">Актеры : {{ film.actors }}</p>
+            <p class="text-white">Актеры :
+                {% for actor in actors %}
+                <a href="{% url 'actor_card' actor.pk %}">
+                    {{ actor.name }}
+                </a>
+                {% endfor %}
+            </p>
             <p class="text-white">Жанр :
                 {% for category in categories %}
                     <a href="#" class=" ">{{ category }}

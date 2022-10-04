@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from django.db import models
 from django.core.validators import FileExtensionValidator
 
@@ -10,8 +12,15 @@ class Film(models.Model):
     film_type = models.CharField('Тип', max_length = 50)
     description = models.TextField()
     film_file = models.FileField(upload_to = 'video/' , validators = [FileExtensionValidator(allowed_extensions = ['mp4'])])
-    actors = models.TextField()
 
     def __str__(self):
         return self.film_title
 
+class Actor(models.Model):
+    name = models.CharField('Имя',max_length = 300)
+    surname = models.CharField('Фамилия',max_length = 300)
+    actor_photo = models.ImageField('Фото актера',upload_to = 'images/actors')
+    actor_film_list = models.ForeignKey('Film', on_delete = models.CASCADE)
+    birthday = models.DateField('День рожденья',null=True)
+    def __str__(self):
+        return self.name
