@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'films',
     'crispy_forms',
+    'users',
 ]
 
 MIDDLEWARE = [
@@ -101,7 +102,7 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
-
+AUTH_USER_MODEL = 'users.CustomUser'
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 
@@ -119,7 +120,6 @@ USE_TZ = True
 LOGIN_REDIRECT_URL = 'main'
 STATIC_URL = 'static/'
 STATICFILES_DIRS = ['static']
-
 MEDIA_ROOT = ''
 MEDIA_URL = ''
 
