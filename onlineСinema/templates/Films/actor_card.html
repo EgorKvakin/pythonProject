@@ -6,11 +6,12 @@
     <div class="card d-flex p-2" style="width: 25rem;">
         <img class="card-img-top" src="{{ MEDIA_URL }}{{ actor.actor_photo }}" alt="Card image cap">
         <div class="card-body">
+            <h5 class="h5 text-center" style="font-family: cursive;">{{ actor.name }}</h5>
         </div>
     </div>
     <div class="container d-flex p-2">
         <ul>
-            <h5 class="h5 text-white">{{ actor.name }}</h5>
+            <h5 class="h5 text-white">{{ actor.name }} {{ actor.surname }}</h5>
             <p class="text-white">День рождения : {{ actor.birthday }}({{ year }} лет)</p>
         </ul>
     </div>
