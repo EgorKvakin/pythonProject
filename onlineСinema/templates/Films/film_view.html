@@ -14,7 +14,7 @@
             <p class="text-white">Актеры :
                 {% for actor in actors %}
                 <a href="{% url 'actor_card' actor.pk %}">
-                    {{ actor.name }}
+                    {{ actor.name }} {{ actor.surname }}
                 </a>
                 {% endfor %}
             </p>
