@@ -10,7 +10,7 @@ from .models import Film, Actor, Categories
 
 class FilmView(ListView):
     model = Film
-    template_name = 'main.html'
+    template_name = 'index.html'
 
 def movieView(request, pk):
     try:
