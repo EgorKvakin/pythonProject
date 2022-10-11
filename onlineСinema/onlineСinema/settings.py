@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'films',
     'crispy_forms',
     'users',
+    'whitenoise',
 ]
 
 MIDDLEWARE = [
