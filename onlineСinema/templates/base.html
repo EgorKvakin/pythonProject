@@ -19,7 +19,18 @@
         <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">Фильмы<span class="sr-only">(current)</span></a>
+                    <ul class="navbar-nav ml-auto">
+                        <li>
+                            <div class="dropdown show">
+                                <a class="nav-link dropdown-toggle" id="userMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#">Фильмы<span class="sr-only">(current)</span></a>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                    {% for category in categoriesName %}
+                                        <a class="dropdown-item" href="{% url 'category' category.pk %}">{{ category.category }}</a>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Сериалы</a>
@@ -27,11 +38,6 @@
                 <li class="nav-item">
                     <a class="nav-link disabled" href="#">Мультфильмы</a>
                 </li>
-                {% for category in categoriesName %}
-                    <li>
-                        <a class="nav-link" href="{% url 'category' category.pk %}">{{ category.category }}</a>
-                    </li>
-                {% endfor %}
             </ul>
             <form class="form-inline my-2 my-lg-0">
                 <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
@@ -63,5 +69,8 @@
         crossorigin="anonymous"></script>
 
 <script src="https://vjs.zencdn.net/7.20.3/video.min.js"></script>
+<script type='text/javascript' src="{% static 'js/Knockout.js' %}"></script>
+<script src="{% static 'js/script.js' %}"></script>
+
 </body>
 </html>
