@@ -39,7 +39,6 @@ INSTALLED_APPS = [
     'films',
     'crispy_forms',
     'users',
-    'whitenoise',
 ]
 
 MIDDLEWARE = [
@@ -123,8 +122,8 @@ LOGOUT_REDIRECT_URL = 'login'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
 STATICFILES_DIRS = ( os.path.join('static'), )
-MEDIA_ROOT = ''
-MEDIA_URL = ''
+MEDIA_ROOT = f'{BASE_DIR}/media'
+MEDIA_URL = '/media/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field

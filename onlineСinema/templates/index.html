@@ -6,7 +6,7 @@
         {%for film in object_list %}
         <div class="d-inline-flex p-2">
             <a href="{% url 'movie_view' film.pk %}">
-                <img src="{{ film.film_preview }}" width="300" height="450" class="rounded">
+                <img src="{{ MEDIA_URL }}{{ film.film_preview }}" width="300" height="450" class="rounded">
             </a>
         </div>
         {% endfor %}
