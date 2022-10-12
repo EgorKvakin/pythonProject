@@ -45,7 +45,7 @@ def categoryFilmsView(request, pk):
 
 def autocomplete(request):
     if request.is_ajax():
-        queryset = Film.objects.all()
+        queryset = Film.objects.filter(film_title=request.GET.get('search', None))
         list = []
         for i in queryset:
             list.append(i.film_title)
