@@ -3,8 +3,8 @@ from django.shortcuts import render, HttpResponse
 from django.views.generic import TemplateView, ListView, View
 from datetime import datetime
 from django.template import RequestContext
+from django.http import JsonResponse
 from .models import Film, Actor, Categories
-
 
 # Create your views here.
 
@@ -41,3 +41,15 @@ def categoryFilmsView(request, pk):
         raise Http404("Категория не найдена")
     films = Film.objects.filter(film_list=pk)
     return render(request, 'Films/category_list.html', {'categories': categories, 'films': films})
+
+
+def autocomplete(request):
+    if request.is_ajax():
+        queryset = Film.objects.all()
+        list = []
+        for i in queryset:
+            list.append(i.film_title)
+        data = {
+            'list': list,
+        }
+        return JsonResponse(data)

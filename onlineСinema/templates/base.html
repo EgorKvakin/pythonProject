@@ -40,7 +40,7 @@
                 </li>
             </ul>
             <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <input class="form-control mr-sm-2" name="search" id="id_input" type="text" placeholder="Search" aria-label="Search">
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
             </form>
             {% if user.is_authenticated %}
@@ -71,6 +71,7 @@
 <script src="https://vjs.zencdn.net/7.20.3/video.min.js"></script>
 <script type='text/javascript' src="{% static 'js/Knockout.js' %}"></script>
 <script src="{% static 'js/script.js' %}"></script>
+<script src="{% static 'js/jQuery.js' %}"></script>
 
 </body>
 </html>
