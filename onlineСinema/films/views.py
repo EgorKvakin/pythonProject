@@ -43,13 +43,10 @@ def categoryFilmsView(request, pk):
     return render(request, 'Films/category_list.html', {'categories': categories, 'films': films})
 
 
-def autocomplete(request):
-    if request.is_ajax():
-        queryset = Film.objects.filter(film_title=request.GET.get('search', None))
-        list = []
-        for i in queryset:
-            list.append(i.film_title)
-        data = {
-            'list': list,
-        }
-        return JsonResponse(data)
+def autocompleteModel(request):
+    query_original = request.GET.get('term')
+    queryset = Film.objects.filter(film_title__contains = query_original)
+    list = []
+    list += [x.film_title for x in queryset]
+    return JsonResponse(list, safe=False)
+
