@@ -45,8 +45,19 @@ def categoryFilmsView(request, pk):
 
 def autocompleteModel(request):
     query_original = request.GET.get('term')
-    queryset = Film.objects.filter(film_title__contains = query_original)
+    queryset = Film.objects.filter(film_title__icontains = query_original)
     list = []
     list += [x.film_title for x in queryset]
     return JsonResponse(list, safe=False)
+
+class Search(ListView):
+    template_name = 'index.html'
+
+    def get_queryset(self):
+        return Film.objects.filter(film_title__icontains = self.request.GET.get('search'))
+
+    def get_context_data(self):
+        context = super().get_context_data()
+        context['search'] = self.request.GET.get('search')
+        return context
 

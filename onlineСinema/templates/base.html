@@ -40,7 +40,7 @@
                     <a class="nav-link disabled" href="#">Мультфильмы</a>
                 </li>
             </ul>
-            <form class="form-inline my-2 my-lg-0">
+            <form class="form-inline my-2 my-lg-0" action="{% url 'search' %}" id="id_search" method="get">
                 <input class="form-control mr-sm-2" name="search" id="id_input" type="text" placeholder="Search" aria-label="Search">
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
             </form>
@@ -78,9 +78,9 @@
     $(function(){
         $( "#id_input" ).autocomplete({
             source: "{% url 'autocomplete' %}",
+            min_length:3,
         });
     });
-
 </script>
 </body>
 </html>
