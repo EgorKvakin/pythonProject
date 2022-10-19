@@ -44,11 +44,18 @@ def categoryFilmsView(request, pk):
 
 
 def autocompleteModel(request):
-    query_original = request.GET.get('term')
+    query_original = request.GET.get('search')
     queryset = Film.objects.filter(film_title__icontains = query_original)
     list = []
-    list += [x.film_title for x in queryset]
-    return JsonResponse(list, safe=False)
+    for film in queryset:
+        list.append({
+            'name': film.film_title,
+            'id': film.pk
+        })
+    return JsonResponse({
+        'status':True,
+        'list':list
+    })
 
 class Search(ListView):
     template_name = 'index.html'

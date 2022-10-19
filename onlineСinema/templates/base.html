@@ -6,7 +6,11 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/>
     <link href="https://vjs.zencdn.net/7.20.3/video-js.css" rel="stylesheet"/>
-    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.13.2/themes/smoothness/jquery-ui.css">
+    <script src="https://unpkg.com/@trevoreyre/autocomplete-js"></script>
+    <link
+            rel="stylesheet"
+            href="https://unpkg.com/@trevoreyre/autocomplete-js/dist/style.css"
+    />
     <title>{% block title %}Octopus{% endblock %}</title>
 </head>
 <body class="bg-dark">
@@ -23,10 +27,12 @@
                     <ul class="navbar-nav ml-auto">
                         <li>
                             <div class="dropdown show">
-                                <a class="nav-link dropdown-toggle" id="userMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#">Фильмы<span class="sr-only">(current)</span></a>
+                                <a class="nav-link dropdown-toggle" id="userMenu" data-toggle="dropdown"
+                                   aria-haspopup="true" aria-expanded="false" href="#">Фильмы<span class="sr-only">(current)</span></a>
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                     {% for category in categoriesName %}
-                                        <a class="dropdown-item" href="{% url 'category' category.pk %}">{{ category.category }}</a>
+                                    <a class="dropdown-item" href="{% url 'category' category.pk %}">{{
+                                        category.category }}</a>
                                     {% endfor %}
                                 </div>
                             </div>
@@ -41,14 +47,22 @@
                 </li>
             </ul>
             <form class="form-inline my-2 my-lg-0" action="{% url 'search' %}" id="id_search" method="get">
-                <input class="form-control mr-sm-2" name="search" id="id_input" type="text" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                <div id="autocomplete" class="autocomplete">
+                    <input class="autocomplete-input" name="search"/>
+                    <ul class="autocomplete-result-list"></ul>
+                </div>
             </form>
             {% if user.is_authenticated %}
-                <a href="{% url 'logout' %}"><button type="button" class="btn btn-dark">Logout</button></a>
+            <a href="{% url 'logout' %}">
+                <button type="button" class="btn btn-dark">Logout</button>
+            </a>
             {% else %}
-                <a href="{% url 'login' %}"><button type="button" class="btn btn-dark">Login</button></a>
-                <a href="{% url 'signup' %}"><button type="button" class="btn btn-dark">Sign up</button></a>
+            <a href="{% url 'login' %}">
+                <button type="button" class="btn btn-dark">Login</button>
+            </a>
+            <a href="{% url 'signup' %}">
+                <button type="button" class="btn btn-dark">Sign up</button>
+            </a>
             {% endif %}
         </div>
     </nav>
@@ -72,15 +86,39 @@
 <script src="https://vjs.zencdn.net/7.20.3/video.min.js"></script>
 <script type='text/javascript' src="{% static 'js/Knockout.js' %}"></script>
 <script src="{% static 'js/script.js' %}"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js"></script>
 <script>
-    $(function(){
-        $( "#id_input" ).autocomplete({
-            source: "{% url 'autocomplete' %}",
-            min_length:3,
-        });
-    });
+    new Autocomplete('#autocomplete' , {
+        search : input => {
+            console.log(input)
+            const url = `/autocomplete/?search=${input}`
+            return new Promise(resolve => {
+                fetch(url)
+                .then(response=>response.json())
+                .then(data =>{
+                    resolve(data.list)
+                })
+            })
+        },
+        renderResult : (result, props) => {
+            console.log(props)
+            let group = ''
+            if (result.index % 3 == 0){
+                group = `<li class="group">Group</li>`
+            }
+            return `
+            ${group}
+            <li ${props}>
+                <a class="text-decoration-none text-reset" href = "/film/${result.id}">
+                    ${result.name}
+                </a>
+                </li>
+            `
+        },
+        getResultValue:(result) => {
+           return result.name
+        },
+
+    })
 </script>
 </body>
 </html>
