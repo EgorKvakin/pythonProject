@@ -31,8 +31,9 @@
                                    aria-haspopup="true" aria-expanded="false" href="#">Фильмы<span class="sr-only">(current)</span></a>
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                     {% for category in categoriesName %}
-                                    <a class="dropdown-item" href="{% url 'category' category.pk %}">{{
-                                        category.category }}</a>
+                                    <a class="dropdown-item" href="{% url 'category' category.pk %}">
+                                        {{ category.category }}
+                                    </a>
                                     {% endfor %}
                                 </div>
                             </div>

@@ -8,13 +8,9 @@ O
 K
 onlineСinema/users/apps.py,d/7/d7c63e53e25147295c1ffe25ed303dce955976fb
 w
-G.idea/sonarlint/issuestore/d/1/d1107ed8c93c6c0267e2d1217d5d7a736c73e80d,3/d/3d180018e35aaa5a258c4dd4af150bb95f6f6766
-w
 G.idea/sonarlint/issuestore/3/8/386775f90769052e92367c6bc15401a59a6fb522,a/f/af7c2852b591f8eb17d28fabe27197188291e6e8
 V
 &Spider/films/films/spiders/__init__.py,e/2/e25db69582d8506eeb19eb563092f9f3819825b7
-w
-G.idea/sonarlint/issuestore/3/d/3d180018e35aaa5a258c4dd4af150bb95f6f6766,6/e/6e8723aead93d2f9c89bd2bfc984e2d72e2d41e7
 w
 G.idea/sonarlint/issuestore/d/7/d7c63e53e25147295c1ffe25ed303dce955976fb,7/9/79d27d077fdc73ef17f2f682cf623395719366aa
 G
@@ -67,8 +63,6 @@ lonlineСinema/staticfiles/grappelli/tinymce/jscripts/tiny_mce/themes/advanced/s
 oonlineСinema/staticfiles/grappelli/tinymce/jscripts/tiny_mce/plugins/inlinepopups/skins/clearlooks2/window.css,d/3/d3d29f2ddab2e8984259909993ed4fa4d36cc999
 w
 G.idea/sonarlint/issuestore/5/7/57c8a4c6f59fef7271ccc4738c7a15a5abe90571,9/1/9165caa5225802e6b3e69efc53bce8e041e09644
-w
-G.idea/sonarlint/issuestore/6/e/6e8723aead93d2f9c89bd2bfc984e2d72e2d41e7,6/1/61856f398e2b9f286b6e7cbad1d0aa3f71f0d038
 w
 G.idea/sonarlint/issuestore/7/9/79ec66b40fce6ce1279f5886f11871c4708a1198,4/a/4ab03cc9ed20ebaf9c0f549bf77a6ca64fec7346
 w
@@ -1240,8 +1234,6 @@ G.idea/sonarlint/issuestore/b/a/ba1be1694ead7c9ce963d857d1f52e45c02b22aa,d/2/d2
 w
 G.idea/sonarlint/issuestore/d/0/d0e4d12cc6ab2fd83af30fd1afdf8d3c3ba1ee60,8/3/831b0bdd5f10763c2d5efcb926a26d2e859634bf
 w
-G.idea/sonarlint/issuestore/2/0/203f9f63b165e379ad863623c82e7bdc3bb27f91,e/0/e0c2e68a3d1cbb5e454cff4b0b727388499bf212
-w
 G.idea/sonarlint/issuestore/3/1/311defdc9daa4c954cb4af0d7bf9320f34ece373,c/f/cf069ee914d69577b71aa99e2fe4aaf0d2a9bbab
 w
 G.idea/sonarlint/issuestore/4/a/4ad42a1a00532cc99aa0875105fbfb071f5d7853,f/1/f185db6d937f88442d04c3ea25ba89c8238d5b29
@@ -2276,8 +2268,6 @@ G.idea/sonarlint/issuestore/7/2/728e5b5a4f08178f49a0683c83fd6f136fe30fee,6/6/66
 w
 G.idea/sonarlint/issuestore/2/9/29b7c028b067fb3ab6c9bf2bc794d1f7b7b4f392,b/7/b79b1194385f5c64809e3f1bb71499ab8d5c1c1d
 w
-G.idea/sonarlint/issuestore/e/0/e0c2e68a3d1cbb5e454cff4b0b727388499bf212,9/c/9c2e126116da71beface722ec59f81c0ee984828
-w
 G.idea/sonarlint/issuestore/d/0/d04fcff9623af2f899cfb8caaabaf05eb8380059,c/9/c92e38eb3f4e8cba0e1ada9ebb287227f51b121d
 w
 G.idea/sonarlint/issuestore/7/2/728a5b23bd81cfb2c6d739ed9d6bb996794b130b,3/e/3e2b00cb4ed96f3ac9912b351117bba19c61fb4c
@@ -2877,8 +2867,6 @@ w
 G.idea/sonarlint/issuestore/f/9/f985b678d64f858b80c85e5df8b33223eef05075,b/e/be56bb0970acc2447312356ef8702ddf40e90087
 w
 G.idea/sonarlint/issuestore/2/8/286c2922a51d1338a889716e6e26807f06955141,6/b/6b629ca9644460c281005f07790076dfdb389bb8
-Y
-)onlineСinema/films/context_processors.py,d/a/dae6865f4260e9c408eb0c57a7ef81e65b44cf2e
 w
 G.idea/sonarlint/issuestore/3/b/3b53c9775d994678b0c3828de1cf9e898ac9f22a,4/1/414c8f03c0421504e18e872d79648dbaa2743a23
 w
@@ -3429,8 +3417,6 @@ w
 G.idea/sonarlint/issuestore/3/d/3ddeb405ce62404426405737c1a2b855c47bf080,1/3/135fb2afae35dca4d560813270799f92d5518f5f
 w
 G.idea/sonarlint/issuestore/7/7/772e407f1963e7baf857e865bfdb995ab82aaad2,6/a/6a84bbdf8e51b7b1efb475969f5b2bb1a4f3698a
-w
-G.idea/sonarlint/issuestore/9/c/9c2e126116da71beface722ec59f81c0ee984828,9/7/97a604ba9c21ae33eb95d684987e7766c7bc6ae5
 w
 G.idea/sonarlint/issuestore/7/7/7785c7cdb6b6d600af9d489c49674f9685c6094e,2/e/2e31e3f30988c66adef3ddd9acc07419d0793546
 w
