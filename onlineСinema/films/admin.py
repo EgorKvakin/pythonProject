@@ -6,8 +6,6 @@ class SeriesVideoAdmin(admin.ModelAdmin):
   pass
 class SeriesVideoInline(admin.StackedInline):
   model = SeriesVideo
-  max_num = 10
-  extra = 0
 
 
 class SeriesVideoAdmin(admin.ModelAdmin):
