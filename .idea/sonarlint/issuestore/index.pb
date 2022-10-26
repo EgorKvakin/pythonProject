@@ -4086,8 +4086,6 @@ G.idea/sonarlint/issuestore/8/1/81dc036984d36f01400bb3ad6d14d2b13e233cd1,0/d/0d
 w
 G.idea/sonarlint/issuestore/e/b/ebd0e0b211b885c135e34b5b66032bbad1e348a4,8/6/86b76e2cec2f5346f6bfd7fd65e3f8f2db3ac0c5
 w
-G.idea/sonarlint/issuestore/5/6/5623bd57d8a66088ca5b937a6edef90fc6213a92,7/f/7fc26f07528fea3399d620b44c892588bd2595af
-w
 G.idea/sonarlint/issuestore/9/0/90633ec6b9b953da116ad577fac814f0d1f46c6b,e/4/e4bc32399c82b941616b91bb54408a055fa974c7
 w
 G.idea/sonarlint/issuestore/7/0/7031b4ce8999f682a60933407fe771498932d64e,3/3/3332d0a5ae0be10d0171435637bfae0142f3e85f
@@ -4751,3 +4749,7 @@ Y
 )onlineСinema/films/context_processors.py,d/a/dae6865f4260e9c408eb0c57a7ef81e65b44cf2e
 I
 onlineСinema/__init__.py,f/2/f2e2d70b50fc5c76a88402cf5f5292046e7fad53
+w
+G.idea/sonarlint/issuestore/f/2/f2e2d70b50fc5c76a88402cf5f5292046e7fad53,c/c/cc1e0b17eb4cb73dee76bd79b816910182869bee
+t
+DonlineСinema/films/migrations/0010_alter_seriesvideo_series_file.py,e/4/e463c9365d54a0fec974dff2e07f299b9b5ae41f
