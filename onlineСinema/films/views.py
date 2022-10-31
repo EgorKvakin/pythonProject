@@ -51,28 +51,31 @@ def categoryFilmsView(request, pk):
 # Поиск
 def autocompleteModel(request):
     query_original = request.GET.get('search')
-    queryset = Film.objects.filter(film_title__icontains = query_original)
+    queryset_film = Film.objects.filter(film_title__icontains = query_original)
+    queryset_series = Series.objects.filter(series_title__icontains=query_original)
     list = []
-    for film in queryset:
+    for film in queryset_film:
         list.append({
-            'name': film.film_title,
-            'id': film.pk
+            "name":film.film_title,
+            "id":film.pk,
+            "ind":'film'
+        })
+    for serie in queryset_series:
+        list.append({
+            "name":serie.series_title,
+            "id":serie.pk,
+            "ind":'series'
         })
     return JsonResponse({
         'status':True,
         'list':list
     })
 
-class Search(ListView):
-    template_name = 'index.html'
-
-    def get_queryset(self):
-        return Film.objects.filter(film_title__icontains = self.request.GET.get('search'))
-
-    def get_context_data(self):
-        context = super().get_context_data()
-        context['search'] = self.request.GET.get('search')
-        return context
+def search(request):
+        queryset = request.GET.get('search')
+        film_list = Film.objects.filter(film_title__icontains = queryset)
+        series_list = Series.objects.filter(series_title__icontains = queryset)
+        return render(request, 'search.html',{'series':series_list,'films':film_list})
 
 # Сериалы
 
@@ -91,4 +94,4 @@ def categorySeriesView(request, pk):
     except:
         raise Http404("Категория не найдена")
     series = Series.objects.filter(film_list=pk)
-    return render(request, 'Films/category_list.html', {'categories': categories, 'films': series})
+    return render(request, 'Series/category_series_list.html', {'categories': categories, 'series': series})

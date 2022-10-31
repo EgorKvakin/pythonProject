@@ -27,11 +27,11 @@
                     <ul class="navbar-nav ml-auto">
                         <li>
                             <div class="dropdown show">
-                                <a class="nav-link dropdown-toggle" id="userMenu" data-toggle="dropdown"
+                                <a class="nav-link dropdown-toggle" id="FilmMenu" data-toggle="dropdown"
                                    aria-haspopup="true" aria-expanded="false" href="#">Фильмы<span class="sr-only">(current)</span></a>
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                     {% for category in categoriesName %}
-                                    <a class="dropdown-item" href="{% url 'category' category.pk %}">
+                                    <a class="dropdown-item" href="{% url 'category_films' category.pk %}">
                                         {{ category.category }}
                                     </a>
                                     {% endfor %}
@@ -41,7 +41,18 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Сериалы</a>
+                    <div class="dropdown show">
+                        <a class="nav-link dropdown-toggle" id="SeriesMenu" data-toggle="dropdown"
+                           aria-haspopup="true" aria-expanded="false" href="#">Сериалы<span
+                                class="sr-only">(current)</span></a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            {% for category in categoriesName %}
+                            <a class="dropdown-item" href="{% url 'category_series' category.pk %}">
+                                {{ category.category }}
+                            </a>
+                            {% endfor %}
+                        </div>
+                    </div>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link disabled" href="#">Мультфильмы</a>
@@ -109,7 +120,7 @@
             return `
             ${group}
             <li ${props}>
-                <a class="text-decoration-none text-reset" href = "/film/${result.id}">
+                <a class="text-decoration-none text-reset" href = "/${result.ind}/${result.id}">
                     ${result.name}
                 </a>
                 </li>
@@ -119,6 +130,7 @@
            return result.name
         },
     })
+
 </script>
 </body>
 </html>

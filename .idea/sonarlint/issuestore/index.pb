@@ -3,8 +3,6 @@ L
 onlineСinema/users/tests.py,4/7/475b80705f975152b7f4324d264b4bc751e2cb17
 O
 onlineСinema/users/__init__.py,3/8/386775f90769052e92367c6bc15401a59a6fb522
-`
-0onlineСinema/templates/Films/category_list.html,4/f/4f8c4109916798a50553e2aa38b35920a59c6c3a
 K
 onlineСinema/users/apps.py,d/7/d7c63e53e25147295c1ffe25ed303dce955976fb
 w
@@ -23,8 +21,6 @@ K
 Spider/films/films/items.py,f/8/f8411179346c4bf663349f8d9034aef50daf0634
 Q
 !Spider/films/films/middlewares.py,e/9/e9f080e4c36f915c835103870dc016daca76696f
-w
-G.idea/sonarlint/issuestore/4/b/4b734a6482faeceab1bf7abda14d328a5b826884,7/0/70dff66e7a3aa3b0bf192675c0c2231428e8f052
 w
 G.idea/sonarlint/issuestore/4/7/475b80705f975152b7f4324d264b4bc751e2cb17,6/b/6bb1099bc0651cfb71d4351e2a8ae065cb849d4e
 N
@@ -4745,11 +4741,21 @@ w
 G.idea/sonarlint/issuestore/9/f/9f9198a9961e07005de7182e2b8a73c643613c28,0/f/0f70ebe2d43d7bf8579548d8c9ffac4bcde068e2
 w
 G.idea/sonarlint/issuestore/2/c/2cd61b26dc5764c55b6332265b79ebbc77479dc6,c/6/c6f91d345c488415a1341d36e758d0caafdb1874
-Y
-)onlineСinema/films/context_processors.py,d/a/dae6865f4260e9c408eb0c57a7ef81e65b44cf2e
 I
 onlineСinema/__init__.py,f/2/f2e2d70b50fc5c76a88402cf5f5292046e7fad53
 w
 G.idea/sonarlint/issuestore/f/2/f2e2d70b50fc5c76a88402cf5f5292046e7fad53,c/c/cc1e0b17eb4cb73dee76bd79b816910182869bee
 t
 DonlineСinema/films/migrations/0010_alter_seriesvideo_series_file.py,e/4/e463c9365d54a0fec974dff2e07f299b9b5ae41f
+w
+G.idea/sonarlint/issuestore/c/c/cc1e0b17eb4cb73dee76bd79b816910182869bee,c/7/c7f10589095adf6e3d2dfad0d11bb29c53333c51
+w
+G.idea/sonarlint/issuestore/e/4/e463c9365d54a0fec974dff2e07f299b9b5ae41f,1/4/143b64697b477f9ff3f0d614941c297b9edeadd7
+L
+onlineСinema/films/admin.py,4/b/4b734a6482faeceab1bf7abda14d328a5b826884
+]
+-onlineСinema/templates/Films/actor_card.html,5/4/54a62c616d9b499850938bb42c3ffa193c606f69
+Y
+)onlineСinema/films/context_processors.py,d/a/dae6865f4260e9c408eb0c57a7ef81e65b44cf2e
+`
+0onlineСinema/templates/Films/category_list.html,4/f/4f8c4109916798a50553e2aa38b35920a59c6c3a

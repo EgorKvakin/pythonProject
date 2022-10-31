@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block title %}categories.name{%endblock %}
+{% block content %}
+{%for series in series %}
+<div class="d-inline-flex p-2">
+    <a href="{% url 'series_view' series.pk %}">
+        <img src="{{ MEDIA_URL }}{{ series.series_preview }}" width="300" height="450" class="rounded">
+    </a>
+</div>
+{% endfor %}
+{% endblock %}

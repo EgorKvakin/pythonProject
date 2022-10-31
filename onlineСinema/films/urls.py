@@ -7,7 +7,8 @@ urlpatterns = [
     path('film/<int:pk>/', views.movieView, name = 'movie_view'),
     path('series/<int:pk>/', views.seriesView, name = 'series_view'),
     path('actor/<int:pk>/', views.actorCard, name = 'actor_card'),
-    path('category/<int:pk>/', views.categoryFilmsView, name = 'category'),
+    path('films/category/<int:pk>/', views.categoryFilmsView, name = 'category_films'),
+    path('series/category/<int:pk>/', views.categorySeriesView, name = 'category_series'),
     path('autocomplete/', views.autocompleteModel , name = 'autocomplete' ),
-    path('search/', views.Search.as_view(), name ='search' ),
+    path('search/', views.search, name ='search' ),
 ]
