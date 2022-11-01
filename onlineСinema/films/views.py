@@ -4,7 +4,7 @@ from django.views.generic import TemplateView, ListView, View
 from datetime import datetime
 from django.template import RequestContext
 from django.http import JsonResponse
-from .models import Film, Actor, Categories, Series
+from .models import Film, Actor, Categories, Series , SeriesVideo
 
 # Create your views here.
 # Главная
@@ -86,7 +86,8 @@ def seriesView(request, pk):
         raise Http404("Сериал не найден!")
     categories = Series.objects.get(pk=pk).film_list.all()
     actors = Series.objects.get(pk=pk).actor_film_list.all()
-    return render(request, 'Series/series_view.html', {'series': series, 'categories': categories, 'actors': actors})
+    series_files = SeriesVideo.objects.filter(series_ind=pk)
+    return render(request, 'Series/series_view.html', {'series': series, 'categories': categories, 'actors': actors, 'series_files':series_files})
 
 def categorySeriesView(request, pk):
     try:
@@ -95,3 +96,15 @@ def categorySeriesView(request, pk):
         raise Http404("Категория не найдена")
     series = Series.objects.filter(film_list=pk)
     return render(request, 'Series/category_series_list.html', {'categories': categories, 'series': series})
+
+def getEpisode(request,pk,ind):
+    try:
+        series = Series.objects.get(id=pk)
+    except:
+        raise Http404("Сериал не найден!")
+    categories = Series.objects.get(pk=pk).film_list.all()
+    actors = Series.objects.get(pk=pk).actor_film_list.all()
+    series_files = SeriesVideo.objects.filter(series_ind=pk)
+    filter = series_files.get(series_index = ind)
+    return render(request, 'Series/series_view_episode.html',{'series': series, 'categories': categories, 'actors': actors, 'episode': filter, 'series_files':series_files})
+
