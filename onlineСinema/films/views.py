@@ -87,7 +87,8 @@ def seriesView(request, pk):
     categories = Series.objects.get(pk=pk).film_list.all()
     actors = Series.objects.get(pk=pk).actor_film_list.all()
     series_files = SeriesVideo.objects.filter(series_ind=pk)
-    return render(request, 'Series/series_view.html', {'series': series, 'categories': categories, 'actors': actors, 'series_files':series_files})
+    episode_one = series_files.get(series_index=1)
+    return render(request, 'Series/series_view.html', {'series': series, 'categories': categories, 'actors': actors, 'series_files':series_files, 'episode_one': episode_one})
 
 def categorySeriesView(request, pk):
     try:

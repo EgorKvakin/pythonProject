@@ -30,7 +30,9 @@
     <div class="container d-flex p-2">
         <div class="container">
         {% for file in series_files %}
-            <li class="btn btn-light btn-sm" episode_id="{{ forloop.counter }}">{{ forloop.counter }}</li>
+            <li class="btn btn-light btn-sm" episode_id="{{ forloop.counter }}">
+                <a href="{% url 'getepisode' series.pk file.series_index %}" class="text-decoration-none">{{ forloop.counter }}</a>
+            </li>
         {% endfor %}
             <video
                     id="my-video"

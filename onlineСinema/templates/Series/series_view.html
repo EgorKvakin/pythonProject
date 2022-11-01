@@ -31,7 +31,7 @@
         <div class="container">
         {% for file in series_files %}
             <li class="btn btn-light btn-sm" >
-                <a href="{% url 'getepisode' series.pk file.series_index %}">{{ forloop.counter }}</a>
+                <a href="{% url 'getepisode' series.pk file.series_index %}" >{{ forloop.counter }}</a>
             </li>
         {% endfor %}
             <video
@@ -44,7 +44,7 @@
                     poster="{{ MEDIA_URL }}{{ series.series_preview }}"
                     data-setup="{}"
             >
-
+            <source src="{{ MEDIA_URL }}{{ episode_one.series_file }}" type="video/mp4"/>
             </video>
         </div>
     </div>
