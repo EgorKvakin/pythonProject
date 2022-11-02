@@ -44,7 +44,11 @@
                 data-setup="{}"
         >
         {% block video %}
-        <source src="{{ MEDIA_URL }}{{ episode_one.series_file }}" type="video/mp4"/>
+            {% if episode == undefined %}
+                <source src="{{ MEDIA_URL }}{{ episode_one.series_file }}" type="video/mp4"/>
+            {% else %}
+                <source src="{{ MEDIA_URL }}{{ episode.series_file }}" type="video/mp4"/>
+            {% endif %}
         {% endblock %}
         </video>
     </div>

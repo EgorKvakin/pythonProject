@@ -107,5 +107,5 @@ def getEpisode(request,pk,ind):
     actors = Series.objects.get(pk=pk).actor_film_list.all()
     series_files = SeriesVideo.objects.filter(series_ind=pk)
     filter = series_files.get(series_index = ind)
-    return render(request, 'Series/series_view_episode.html',{'series': series, 'categories': categories, 'actors': actors, 'episode': filter, 'series_files':series_files})
+    return render(request, 'Series/series_view.html',{'series': series, 'categories': categories, 'actors': actors, 'episode': filter, 'series_files':series_files})
 
