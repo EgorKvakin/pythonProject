@@ -26,28 +26,28 @@
         </ul>
     </div>
 </div>
-{% block video %}
-    <div class="container d-flex p-2">
-        <div class="container">
-        {% for file in series_files %}
-            <li class="btn btn-light btn-sm" >
-                <a href="{% url 'getepisode' series.pk file.series_index %}" >{{ forloop.counter }}</a>
-            </li>
-        {% endfor %}
-            <video
-                    id="my-video"
-                    class="video-js"
-                    controls
-                    preload="auto"
-                    width="1000"
-                    height="800"
-                    poster="{{ MEDIA_URL }}{{ series.series_preview }}"
-                    data-setup="{}"
-            >
-            <source src="{{ MEDIA_URL }}{{ episode_one.series_file }}" type="video/mp4"/>
-            </video>
-        </div>
+<div class="container d-flex p-2">
+    <div class="container">
+    {% for file in series_files %}
+        <li class="btn btn-light btn-sm" >
+            <a href="{% url 'getepisode' series.pk file.series_index %}" >{{ forloop.counter }}</a>
+        </li>
+    {% endfor %}
+        <video
+                id="my-video"
+                class="video-js"
+                controls
+                preload="auto"
+                width="1000"
+                height="800"
+                poster="{{ MEDIA_URL }}{{ series.series_preview }}"
+                data-setup="{}"
+        >
+        {% block video %}
+        <source src="{{ MEDIA_URL }}{{ episode_one.series_file }}" type="video/mp4"/>
+        {% endblock %}
+        </video>
     </div>
-{% endblock %}
+</div>
 <script src="{% static 'js/series_choice.js' %}"></script>
 {% endblock %}

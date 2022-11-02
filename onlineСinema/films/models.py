@@ -30,7 +30,7 @@ class Series(models.Model):
         return self.series_title
 class SeriesVideo(models.Model):
     series_index = models.IntegerField('Номер серии',default=0)
-    series_file = models.FileField(upload_to = f'video/series/{Series.series_title}' , validators = [FileExtensionValidator(allowed_extensions = ['mp4'])])
+    series_file = models.FileField(upload_to = 'video/series/%Y/%m/%d' , validators = [FileExtensionValidator(allowed_extensions = ['mp4'])])
     series_ind = models.ForeignKey('Series',on_delete=models.CASCADE)
 
 class Actor(models.Model):
