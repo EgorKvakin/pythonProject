@@ -3,7 +3,7 @@ from datetime import datetime
 from django.db import models
 from django.core.validators import FileExtensionValidator
 
-# Create your models here.
+# Фильмы
 class Film(models.Model):
     film_title = models.CharField('Название фильма', max_length = 300)
     film_preview = models.ImageField('Превью фильма', upload_to = 'images/films')
@@ -16,6 +16,7 @@ class Film(models.Model):
     def __str__(self):
         return self.film_title
 
+ # Сериалы
 class Series(models.Model):
     series_title = models.CharField('Название сериала', max_length = 300)
     series_preview = models.ImageField('Превью сериала', upload_to = 'images/films')
@@ -28,11 +29,17 @@ class Series(models.Model):
 
     def __str__(self):
         return self.series_title
+
+class Seasons(models.Model):
+    season_index = models.IntegerField('Номер сезона',default=0)
+    season_ind = models.ForeignKey('Series',on_delete=models.CASCADE)
+
 class SeriesVideo(models.Model):
     series_index = models.IntegerField('Номер серии',default=0)
     series_file = models.FileField(upload_to = 'video/series/%Y/%m/%d' , validators = [FileExtensionValidator(allowed_extensions = ['mp4'])])
-    series_ind = models.ForeignKey('Series',on_delete=models.CASCADE)
+    series_ind = models.ForeignKey('Seasons',on_delete=models.CASCADE)
 
+# Актеры
 class Actor(models.Model):
     name = models.CharField('Имя',max_length = 300)
     surname = models.CharField('Фамилия',max_length = 300)
@@ -40,8 +47,9 @@ class Actor(models.Model):
 
     birthday = models.DateField('День рожденья',null=True)
     def __str__(self):
-        return self.name
+        return self.name + ' ' + self.surname
 
+# Категории
 class Categories(models.Model):
     category = models.CharField('Название',max_length = 300)
 

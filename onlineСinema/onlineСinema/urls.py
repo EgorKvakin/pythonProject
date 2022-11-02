@@ -20,6 +20,7 @@ from django.conf import settings
 
 urlpatterns = [
     path('grappelli/', include('grappelli.urls')),
+    path('nested_admin/', include('nested_admin.urls')),
     path('admin/', admin.site.urls),
     path('',include('films.urls')),
     path('film/<int:pk>/',include('films.urls')),

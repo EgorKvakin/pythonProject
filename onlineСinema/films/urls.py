@@ -10,6 +10,7 @@ urlpatterns = [
     path('films/category/<int:pk>/', views.categoryFilmsView, name = 'category_films'),
     path('series/category/<int:pk>/', views.categorySeriesView, name = 'category_series'),
     path('autocomplete/', views.autocompleteModel , name = 'autocomplete' ),
-    path('getepisode/<int:pk>/<int:ind>',views.getEpisode, name = 'getepisode'),
+    path('getseason/<int:pk>/<int:season_ind>',views.getSeason, name = 'getseason'),
+    path('getepisode/<int:pk>/<int:episode_ind>/<int:season_ind>',views.getEpisode, name = 'getepisode'),
     path('search/', views.search, name ='search' ),
 ]

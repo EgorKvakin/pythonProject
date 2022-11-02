@@ -28,9 +28,9 @@
 </div>
 <div class="container d-flex p-2">
     <div class="container">
-    {% for file in series_files %}
+    {% for season in seasons %}
         <li class="btn btn-light btn-sm" >
-            <a href="{% url 'getepisode' series.pk file.series_index %}" >{{ forloop.counter }}</a>
+            <a href="{% url 'getseason' series.pk season.pk %}" >{{ forloop.counter }}</a>
         </li>
     {% endfor %}
         <video
@@ -51,6 +51,11 @@
             {% endif %}
         {% endblock %}
         </video>
+    {% for file in series_files %}
+        <li class="btn btn-light btn-sm" >
+            <a href="{% url 'getepisode' series.pk file.series_index season_index %}" >{{ forloop.counter }}</a>
+        </li>
+    {% endfor %}
     </div>
 </div>
 <script src="{% static 'js/series_choice.js' %}"></script>
