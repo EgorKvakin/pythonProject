@@ -1,4 +1,5 @@
 from django.http import Http404, HttpResponseRedirect
+from django.core import serializers
 from django.shortcuts import render, HttpResponse
 from django.views.generic import TemplateView, ListView, View
 from datetime import datetime
@@ -73,9 +74,12 @@ def autocompleteModel(request):
 
 def search(request):
         queryset = request.GET.get('search')
-        film_list = Film.objects.filter(film_title__icontains = queryset)
-        series_list = Series.objects.filter(series_title__icontains = queryset)
-        return render(request, 'search.html',{'series':series_list,'films':film_list})
+        film_list = serializers.serialize('json', Film.objects.all())
+        series_list = serializers.serialize('json', Series.objects.all())
+        return JsonResponse({
+            'films':film_list,
+            'series':series_list
+        })
 
 # Сериалы
 
@@ -125,3 +129,14 @@ def categorySeriesView(request, pk):
         raise Http404("Категория не найдена")
     series = Series.objects.filter(film_list=pk)
     return render(request, 'Series/category_series_list.html', {'categories': categories, 'series': series})
+
+# Мультфильмы
+
+def categoryCartoonView(request, pk):
+    try:
+        categories = Categories.objects.get(pk=pk)
+    except:
+        raise Http404("Категория не найдена")
+    series = Series.objects.filter(film_list=pk)
+    films = Film.objects.filter(film_list=pk)
+    return render(request, 'Cartoons/category_cartoons_list.html', {'categories': categories, 'series': series, 'films': films})

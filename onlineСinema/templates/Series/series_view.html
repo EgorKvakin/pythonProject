@@ -17,10 +17,17 @@
                 {% endfor %}
             </p>
             <p class="text-white">Жанр :
-                {% for category in categories %}
-                <a href="{% url 'category_series' category.pk %}" class=" ">{{ category.category }}
-                </a>
-                {% endfor %}
+                {% if series.tag == '1' %}
+                    {% for category in categories %}
+                    <a href="{% url 'category_series' category.pk %}" class=" ">{{ category.category }}
+                    </a>
+                    {% endfor %}
+                {% else %}
+                    {% for category in categories %}
+                    <a href="{% url 'category_cartoon' category.pk %}" class=" ">{{ category.category }}
+                    </a>
+                    {% endfor %}
+                {% endif %}
             </p>
             <p class="text-white text-left">{{ series.description }}</p>
         </ul>
@@ -31,7 +38,7 @@
         <div class="btn-group me-2" role="group" aria-label="Basic outlined example">
         {% for season in seasons %}
             <li type="button" class="btn btn-secondary">
-                <a style="color:#D3D3D3; text-decoration:none" href="{% url 'getseason' series.pk season.pk %}" >{{ forloop.counter }}</a>
+                <a style="color:#D3D3D3; text-decoration:none" href="{% url 'getseason' series.pk season.pk %}" >Сезон {{ forloop.counter }}</a>
             </li>
         {% endfor %}
         </div>
@@ -41,7 +48,7 @@
                 controls
                 preload="auto"
                 width="1000"
-                height="800"
+                height="700"
                 poster="{{ MEDIA_URL }}{{ series.series_preview }}"
                 data-setup="{}"
         >
@@ -56,7 +63,7 @@
         <div class="btn-group me-2" role="group" aria-label="Basic outlined example">
         {% for file in series_files %}
             <li type="button" class="btn btn-secondary" >
-                <a style="color:#D3D3D3; text-decoration:none" href="{% url 'getepisode' series.pk file.series_index season_index %}" >{{ forloop.counter }}</a>
+                <a style="color:#D3D3D3; text-decoration:none" href="{% url 'getepisode' series.pk file.series_index season_index %}" >Серия {{ forloop.counter }}</a>
             </li>
         {% endfor %}
         </div>

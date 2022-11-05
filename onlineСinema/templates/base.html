@@ -55,12 +55,23 @@
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link disabled" href="#">Мультфильмы</a>
+                    <div class="dropdown show">
+                        <a class="nav-link dropdown-toggle" id="CartoonMenu" data-toggle="dropdown"
+                           aria-haspopup="true" aria-expanded="false" href="#">Мультфильмы<span
+                                class="sr-only">(current)</span></a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            {% for category in categoriesName %}
+                            <a class="dropdown-item" href="{% url 'category_cartoon' category.pk %}">
+                                {{ category.category }}
+                            </a>
+                            {% endfor %}
+                        </div>
+                    </div>
                 </li>
             </ul>
             <form class="form-inline my-2 my-lg-0" action="{% url 'search' %}" id="id_search" method="get">
                 <div id="autocomplete" class="autocomplete">
-                    <input class="autocomplete-input" name="search"/>
+                    <input class="autocomplete-input" id="search" name="search"/>
                     <ul class="autocomplete-result-list"></ul>
                 </div>
             </form>
@@ -98,10 +109,10 @@
 <script src="https://vjs.zencdn.net/7.20.3/video.min.js"></script>
 <script type='text/javascript' src="{% static 'js/Knockout.js' %}"></script>
 <script src="{% static 'js/script.js' %}"></script>
+<script src="{% static 'js/life_search.js' %}"></script>
 <script>
     new Autocomplete('#autocomplete' , {
         search : input => {
-            console.log(input)
             const url = `/autocomplete/?search=${input}`
             return new Promise(resolve => {
                 fetch(url)
@@ -112,7 +123,6 @@
             })
         },
         renderResult : (result, props) => {
-            console.log(props)
             let group = ''
             if (result.index % 3 == 0){
                 group = `<li class="group">Group</li>`

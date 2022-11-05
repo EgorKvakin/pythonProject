@@ -19,10 +19,17 @@
                 {% endfor %}
             </p>
             <p class="text-white">Жанр :
-                {% for category in categories %}
-                <a href="{% url 'category_films' category.pk %}" class=" ">{{ category.category }}
-                </a>
-                {% endfor %}
+                {% if film.tag == '1' %}
+                    {% for category in categories %}
+                    <a href="{% url 'category_films' category.pk %}" class=" ">{{ category.category }}
+                    </a>
+                    {% endfor %}
+                {% else %}
+                    {% for category in categories %}
+                    <a href="{% url 'category_cartoon' category.pk %}" class=" ">{{ category.category }}
+                    </a>
+                    {% endfor %}
+                {% endif %}
             </p>
             <p class="text-white text-left">{{ film.description }}</p>
         </ul>

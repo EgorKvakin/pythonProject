@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block title %}categories.name{%endblock %}
+{% block content %}
+{%for film in films %}
+{%if film.tag == '2' %}
+<div class="d-inline-flex p-2">
+    <a href="{% url 'movie_view' film.pk %}">
+        <img src="{{ MEDIA_URL }}{{ film.film_preview }}" width="300" height="450" class="rounded">
+    </a>
+</div>
+{% endif %}
+{% endfor %}
+{%for series in series %}
+{%if series.tag == '2' %}
+<div class="d-inline-flex p-2">
+    <a href="{% url 'series_view' series.pk %}">
+        <img src="{{ MEDIA_URL }}{{ series.series_preview }}" width="300" height="450" class="rounded">
+    </a>
+</div>
+{% endif %}
+{% endfor %}
+{% endblock %}

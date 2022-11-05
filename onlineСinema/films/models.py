@@ -5,10 +5,15 @@ from django.core.validators import FileExtensionValidator
 
 # Фильмы
 class Film(models.Model):
+    tag_list = (
+        ('1', 'Фильм'),
+        ('2', 'Мультфильм'),
+    )
     film_title = models.CharField('Название фильма', max_length = 300)
     film_preview = models.ImageField('Превью фильма', upload_to = 'images/films')
     film_year = models.CharField('Дата выхода фильма', max_length = 50)
     description = models.TextField()
+    tag = models.CharField('Тэг',choices= tag_list , max_length = 1)
     film_file = models.FileField(upload_to = 'video/' , validators = [FileExtensionValidator(allowed_extensions = ['mp4'])])
     actor_film_list = models.ManyToManyField('Actor')
     film_list = models.ManyToManyField('Categories')
@@ -18,10 +23,15 @@ class Film(models.Model):
 
  # Сериалы
 class Series(models.Model):
+    tag_list = (
+        ('1', 'Сериал'),
+        ('2', 'Мультсериал'),
+    )
     series_title = models.CharField('Название сериала', max_length = 300)
     series_preview = models.ImageField('Превью сериала', upload_to = 'images/films')
     series_year = models.CharField('Дата выхода сериала', max_length = 50)
     description = models.TextField()
+    tag = models.CharField('Тэг',choices= tag_list, max_length = 1)
     series_count = models.PositiveBigIntegerField('Кол-во серий')
     seasons_count = models.PositiveIntegerField('Кол-во сезонов')
     actor_film_list = models.ManyToManyField('Actor')
