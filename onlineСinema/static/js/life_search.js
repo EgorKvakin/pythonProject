@@ -1,13 +1,11 @@
 var ViewModel = {
-    film_title: ko.observable(''),
-    film_preview: ko.observable(''),
-    pk: ko.observable(),
+    films: ko.ko.observableArray([]),
+    series: ko.observableArray([]),
 };
-$.getJSON("/search/",function(data){
-
-})
-let elements = document.querySelectorAll('div.d-inline-flex.observable');
 $("#search").on("keyup", function() {
-
+    $.getJSON("/search/",function(data){
+    ViewModel.films = data.films
+    ViewModel.series = data.series
+})
 })
 ko.applyBindings(ViewModel);

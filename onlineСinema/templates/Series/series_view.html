@@ -69,5 +69,15 @@
         </div>
     </div>
 </div>
+<div class="container">
+    <form method="post" action="{% url 'add_series_review' series.pk user.pk %}">
+        {% csrf_token %}
+        <input name="comment"/>
+        <button type="submit">Отправить</button>
+    </form>
+    {% for comment in comments %}
+       <p>{{comment.author}} {{comment.comment}}</p>
+    {% endfor %}
+</div>
 <script src="{% static 'js/series_choice.js' %}"></script>
 {% endblock %}

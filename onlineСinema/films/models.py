@@ -1,8 +1,7 @@
 from datetime import datetime
-
 from django.db import models
 from django.core.validators import FileExtensionValidator
-
+from django.conf import settings
 # Фильмы
 class Film(models.Model):
     tag_list = (
@@ -39,7 +38,15 @@ class Series(models.Model):
 
     def __str__(self):
         return self.series_title
+class FilmComments(models.Model):
+    comment = models.TextField()
+    film = models.ForeignKey(Film,on_delete=models.CASCADE)
+    author = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE)
 
+class SeriesComments(models.Model):
+    comment = models.TextField()
+    series = models.ForeignKey(Series,on_delete=models.CASCADE)
+    author = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE)
 class Seasons(models.Model):
     season_index = models.IntegerField('Номер сезона',default=0)
     season_ind = models.ForeignKey('Series',on_delete=models.CASCADE)

@@ -14,4 +14,6 @@ urlpatterns = [
     path('getseason/<int:pk>/<int:season_ind>',views.getSeason, name = 'getseason'),
     path('getepisode/<int:pk>/<int:episode_ind>/<int:season_ind>',views.getEpisode, name = 'getepisode'),
     path('search/', views.search, name ='search' ),
+    path('filmreview/<int:film_pk>/<int:author_pk>', views.FilmAddRewiew.as_view(), name='add_film_review'),
+    path('seriesreview/<int:series_pk>/<int:author_pk>', views.SeriesAddRewiew.as_view(), name='add_series_review'),
 ]

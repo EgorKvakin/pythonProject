@@ -49,4 +49,14 @@
         <source src="{{ MEDIA_URL }}{{ film.film_file }}" type="video/mp4"/>
     </video>
 </div>
+<div class="container">
+    <form method="post" action="{% url 'add_film_review' film.pk user.pk %}">
+        {% csrf_token %}
+        <input name="comment"/>
+        <button type="submit">Отправить</button>
+    </form>
+    {% for comment in comments %}
+       <p>{{comment.author}} {{comment.comment}}</p>
+    {% endfor %}
+</div>
 {% endblock %}
