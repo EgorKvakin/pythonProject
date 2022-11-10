@@ -3,6 +3,7 @@ from django.core import serializers
 from django.shortcuts import render, HttpResponse , redirect
 from django.views.generic import TemplateView, ListView, View
 from datetime import datetime
+from django.core.paginator import Paginator
 from django.template import RequestContext
 from django.http import JsonResponse
 from .models import Film, Actor, Categories, Series, SeriesVideo, Seasons, SeriesComments, FilmComments
@@ -10,13 +11,18 @@ from .forms import FilmCommentForm, SeriesCommentForm
 from users.models import CustomUser
 # Create your views here.
 # Главная
+
 class FilmView(ListView):
     model = Film
     template_name = 'index.html'
-
+    paginate_by = 2
     def get_context_data(self, **kwargs):
         context = super(FilmView, self).get_context_data(**kwargs)
-        context['series'] = Series.objects.all()
+        series = Series.objects.all()
+        paginator = Paginator(series, 2)
+        page_number = self.request.GET.get('page')
+        page_obj1 = paginator.get_page(page_number)
+        context['page_obj1'] = page_obj1
         return context
 # Фильмы
 def movieView(request, pk):

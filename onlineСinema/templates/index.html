@@ -10,11 +10,12 @@
             </a>
         </div>
         {% endfor %}
-        {% for series in series %}
+        {% for series in page_obj1 %}
         <div class="d-inline-flex p-2">
             <a href="{% url 'series_view' series.pk %}">
                 <img src="{{ MEDIA_URL }}{{ series.series_preview }}" width="300" height="450" class="rounded">
             </a>
         </div>
         {% endfor %}
+{% include 'includes/pagination.html' %}
 {% endblock %}
