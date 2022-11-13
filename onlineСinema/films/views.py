@@ -52,8 +52,11 @@ def categoryFilmsView(request, pk):
         categories = Categories.objects.get(pk=pk)
     except:
         raise Http404("Категория не найдена")
-    films = Film.objects.filter(film_list=pk)
-    return render(request, 'Films/category_list.html', {'categories': categories, 'films': films})
+    films = Film.objects.filter(film_list=pk, tag = '1')
+    paginator = Paginator(films,2)
+    page_number = request.GET.get('page')
+    films = paginator.get_page(page_number)
+    return render(request, 'Films/category_list.html', {'categories': categories, 'page_obj': films})
 
 # Поиск
 def autocompleteModel(request):
@@ -128,8 +131,11 @@ def categorySeriesView(request, pk):
         categories = Categories.objects.get(pk=pk)
     except:
         raise Http404("Категория не найдена")
-    series = Series.objects.filter(film_list=pk)
-    return render(request, 'Series/category_series_list.html', {'categories': categories, 'series': series})
+    series = Series.objects.filter(film_list=pk, tag = '1')
+    paginator = Paginator(series,1)
+    page_number = request.GET.get('page')
+    series = paginator.get_page(page_number)
+    return render(request, 'Series/category_series_list.html', {'categories': categories, 'page_obj': series})
 
 # Мультфильмы
 
@@ -138,9 +144,14 @@ def categoryCartoonView(request, pk):
         categories = Categories.objects.get(pk=pk)
     except:
         raise Http404("Категория не найдена")
-    series = Series.objects.filter(film_list=pk)
-    films = Film.objects.filter(film_list=pk)
-    return render(request, 'Cartoons/category_cartoons_list.html', {'categories': categories, 'series': series, 'films': films})
+    series = Series.objects.filter(film_list=pk, tag='2')
+    films = Film.objects.filter(film_list=pk, tag = '2')
+    paginator_series = Paginator(series,1)
+    paginator_films = Paginator(films,1)
+    page_number = request.GET.get('page')
+    series = paginator_series.get_page(page_number)
+    films = paginator_films.get_page(page_number)
+    return render(request, 'Cartoons/category_cartoons_list.html', {'categories': categories, 'series': series, 'page_obj': films})
 
 # Комментарии
 
