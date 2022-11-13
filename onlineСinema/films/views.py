@@ -12,18 +12,17 @@ from users.models import CustomUser
 # Create your views here.
 # Главная
 
-class FilmView(ListView):
-    model = Film
-    template_name = 'index.html'
-    paginate_by = 2
-    def get_context_data(self, **kwargs):
-        context = super(FilmView, self).get_context_data(**kwargs)
-        series = Series.objects.all()
-        paginator = Paginator(series, 2)
-        page_number = self.request.GET.get('page')
-        page_obj1 = paginator.get_page(page_number)
-        context['page_obj1'] = page_obj1
-        return context
+def filmView(request):
+    return render(request,'index.html')
+
+def getDataFilms(request):
+    films = list(Film.objects.values())
+    series = list(Series.objects.values())
+    return JsonResponse(films,safe=False)
+
+def getDataSeries(request):
+    series = list(Series.objects.values())
+    return JsonResponse(series,safe=False)
 # Фильмы
 def movieView(request, pk):
     try:
@@ -59,8 +58,9 @@ def categoryFilmsView(request, pk):
 # Поиск
 def autocompleteModel(request):
     query_original = request.GET.get('search')
-    queryset_film = Film.objects.filter(film_title__icontains = query_original)
-    queryset_series = Series.objects.filter(series_title__icontains=query_original)
+    if(query_original != ''):
+        queryset_film = Film.objects.filter(film_title__icontains = query_original)
+        queryset_series = Series.objects.filter(series_title__icontains=query_original)
     list = []
     for film in queryset_film:
         list.append({
@@ -78,19 +78,6 @@ def autocompleteModel(request):
         'status':True,
         'list':list
     })
-
-def search(request):
-    queryset = request.GET.get('search')
-    films = Film.objects.filter(film_title__icontains = queryset)
-    series = Series.objects.filter(series_title__icontains = queryset)
-    return render(request,'search.html',{'series':series,'films':films})
-#        film_list = serializers.serialize('json', Film.objects.all())
-#        series_list = serializers.serialize('json', Series.objects.all())
-#        return JsonResponse({
-#            'films':film_list,
-#            'series':series_list
-#        }
-#        ,safe=False)
 
 # Сериалы
 

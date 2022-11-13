@@ -1,11 +1,29 @@
-var ViewModel = {
-    films: ko.ko.observableArray([]),
+var viewModel = {
+    films: ko.observableArray([]),
     series: ko.observableArray([]),
+    film: ko.observableArray([])
 };
-$("#search").on("keyup", function() {
-    $.getJSON("/search/",function(data){
-    ViewModel.films = data.films
-    ViewModel.series = data.series
+$.getJSON(`/get_data_films/`).then(data => {
+    viewModel.films(data)
+});
+$.getJSON(`/get_data_series/`).then(data => {
+    viewModel.series(data)
+});
+$(document).ready(function(){
+  $("#search").on("keyup", function() {
+        let val = $(this).val().toLowerCase();
+        if (val != ''){
+            viewModel.films(viewModel.films().filter(item => item.film_title.toLowerCase().search(val) != -1 ));
+            viewModel.series(viewModel.series().filter(item => item.series_title.toLowerCase().search(val) != -1 ));
+        }
+        else {
+            $.getJSON(`/get_data_films/`).then(data => {
+                viewModel.films(data)
+            });
+            $.getJSON(`/get_data_series/`).then(data => {
+                viewModel.series(data)
+            });
+        }
+  })
 })
-})
-ko.applyBindings(ViewModel);
+ko.applyBindings(viewModel);

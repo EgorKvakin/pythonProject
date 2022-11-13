@@ -1,4 +1,83 @@
-{% extends 'Series/series_view.html' %}
-{% block video %}
-    <source src="{{ MEDIA_URL }}{{ episode.series_file }}" type="video/mp4"/>
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="container d-flex p-2 series">
+    <div class="card float-left bg-light " style="width: 25rem;">
+        <img class="card-img-top" src="{{ MEDIA_URL }}{{ series.series_preview }}" alt="Card image cap">
+    </div>
+    <div class="container d-flex p-2">
+        <ul>
+            <h5 class="h5 text-white">{{ series.series_title }}</h5>
+            <p class="text-white">Год выхода : {{ series.series_year }}</p>
+            <p class="text-white">Актеры :
+                {% for actor in actors %}
+                <a href="{% url 'actor_card' actor.pk %}">
+                    {{ actor.name }} {{ actor.surname }}
+                </a>
+                {% endfor %}
+            </p>
+            <p class="text-white">Жанр :
+                {% if series.tag == '1' %}
+                    {% for category in categories %}
+                    <a href="{% url 'category_series' category.pk %}" class=" ">{{ category.category }}
+                    </a>
+                    {% endfor %}
+                {% else %}
+                    {% for category in categories %}
+                    <a href="{% url 'category_cartoon' category.pk %}" class=" ">{{ category.category }}
+                    </a>
+                    {% endfor %}
+                {% endif %}
+            </p>
+            <p class="text-white text-left">{{ series.description }}</p>
+        </ul>
+    </div>
+</div>
+<div class="container d-flex p-2">
+    <div class="container">
+        <div class="btn-group me-2" role="group" aria-label="Basic outlined example">
+        {% for season in seasons %}
+            <li type="button" class="btn btn-secondary" >
+                <a style="color:#D3D3D3; text-decoration:none" season_id="{{season.pk}}" series_id="{{series.pk}}" href="#" >Сезон {{ forloop.counter }}</a>
+            </li>
+        {% endfor %}
+        </div>
+        <video
+                id="my-video"
+                class="video-js"
+                controls
+                preload="auto"
+                width="1000"
+                height="700"
+                poster="{{ MEDIA_URL }}{{ series.series_preview }}"
+                data-setup="{}"
+        >
+        {% block video %}
+            {% if episode == undefined %}
+                <source src="{{ MEDIA_URL }}{{ episode_one.series_file }}" type="video/mp4"/>
+            {% else %}
+                <source src="{{ MEDIA_URL }}{{ episode.series_file }}" type="video/mp4"/>
+            {% endif %}
+        {% endblock %}
+        </video>
+        <div class="btn-group me-2" role="group" aria-label="Basic outlined example">
+        {% for file in series_files %}
+            <li type="button" class="btn btn-secondary" >
+                <a style="color:#D3D3D3; text-decoration:none" episode_id="{{file.series_index}}" series_id="{{series.pk}}" default_season="{{season_index}}" href="#" >Серия {{ forloop.counter }}</a>
+            </li>
+        {% endfor %}
+        </div>
+    </div>
+</div>
+<div class="container">
+    <form method="post" action="{% url 'add_series_review' series.pk user.pk %}">
+        {% csrf_token %}
+        <input name="comment"/>
+        <button type="submit">Отправить</button>
+    </form>
+    {% for comment in comments %}
+       <p>{{comment.author}} {{comment.comment}}</p>
+    {% endfor %}
+</div>
+
 {% endblock %}

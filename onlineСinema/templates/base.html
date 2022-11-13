@@ -69,7 +69,7 @@
                     </div>
                 </li>
             </ul>
-            <form class="form-inline my-2 my-lg-0" action="{% url 'search' %}" id="id_search" method="get">
+            <form class="form-inline my-2 my-lg-0" action="" id="id_search" method="get">
                 <div id="autocomplete" class="autocomplete">
                     <input class="autocomplete-input" id="search" name="search"/>
                     <ul class="autocomplete-result-list"></ul>
@@ -110,6 +110,7 @@
 <script type='text/javascript' src="{% static 'js/Knockout.js' %}"></script>
 <script src="{% static 'js/script.js' %}"></script>
 <script src="{% static 'js/life_search.js' %}"></script>
+<script src="{% static 'js/series_choice.js' %}"></script>
 <script>
     new Autocomplete('#autocomplete' , {
         search : input => {

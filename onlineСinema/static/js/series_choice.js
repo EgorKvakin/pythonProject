@@ -1,21 +1,23 @@
-console.log("Hello world!");
-let activated = (evt) => {
-   let attrValue = evt.target.getAttribute('episode_id');
-   console.log(attrValue)
-   let elements = document.querySelectorAll("source")
-   let activeElem = document.querySelector('source[active="True"]')
-   console.log(activeElem)
-   console.log(elements)
-   for(i = 0; i < elements.length; i++){
-     console.log(elements[i])
-     if(elements[i].getAttribute('episode_id') == attrValue && elements[i] != activeElem){
-        activeElem.setAttribute('active', 'False')
-        elements[i].setAttribute('active', 'True')
-        activeElem.replaceWith(elements[i])
-     }
-   }
+var episodeChoice = {
+    seasons: ko.observableArray([]),
+    series: ko.observableArray([]),
+    episode: ko.observableArray([])
+};
+let episode = (evt) => {
+   var episode = evt.target.getAttribute('episode_id');
+   var season = evt.target.getAttribute('season_id');
+   var series_id = evt.target.getAttribute('series_id')
+   var default_season = evt.target.getAttribute('default_season')
+   var default_episode = 1
+   console.log(series_id)
+   $.getJSON(`/get_data_series/`).then(data => {
+        episodeChoice.series(data)
+    });
+    episodeChoice.series(episodeChoice.series().filter(item => item.id.search(series_id) != -1));
+    console.log(episodeChoice.series(episodeChoice.series().filter(item => item.id == series_id)));
 }
+
 elem = document.querySelectorAll("li")
 for (i = 0; i < elem.length; i++) {
-elem[i].addEventListener("click", activated, false);
+elem[i].addEventListener("click", episode, false);
 }
