@@ -110,7 +110,7 @@ def getSeason(request,pk,season_ind):
     series_files = SeriesVideo.objects.filter(series_ind=season_ind)
     season_index = season_ind
     comments = SeriesComments.objects.filter(series=pk)
-    filter = series_files.get(series_index = 1)
+    filter = series_files.get(series_index=1)
     return render(request, 'Series/series_view.html',{'series': series, 'categories': categories, 'season_index':season_index, 'episode':filter, 'actors': actors, 'seasons':seasons, 'series_files':series_files, 'comments':comments})
 
 def getEpisode(request,pk,episode_ind,season_ind):
