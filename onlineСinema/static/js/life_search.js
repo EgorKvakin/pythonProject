@@ -1,7 +1,8 @@
 var viewModel = {
     films: ko.observableArray([]),
     series: ko.observableArray([]),
-    film: ko.observableArray([])
+    film: ko.observableArray([]),
+    episode: ko.observable()
 };
 $.getJSON(`/get_data_films/`).then(data => {
     viewModel.films(data)
@@ -26,4 +27,18 @@ $(document).ready(function(){
         }
   })
 })
+let episode = (evt) => {
+    let url = evt.target.getAttribute('data-href')
+    console.log(url)
+    $.getJSON(url).then(data => {
+        viewModel.episode(data)
+    });
+    videoNode = videojs('my-video');
+    videoNode.load()
+}
+
+elem = document.querySelectorAll("li.episode")
+for (i = 0; i < elem.length; i++) {
+elem[i].addEventListener("click", episode, false);
+}
 ko.applyBindings(viewModel);

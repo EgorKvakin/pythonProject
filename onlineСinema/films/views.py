@@ -6,6 +6,8 @@ from datetime import datetime
 from django.core.paginator import Paginator
 from django.template import RequestContext
 from django.http import JsonResponse
+import json
+from django.forms.models import model_to_dict
 from .models import Film, Actor, Categories, Series, SeriesVideo, Seasons, SeriesComments, FilmComments
 from .forms import FilmCommentForm, SeriesCommentForm
 from users.models import CustomUser
@@ -111,7 +113,7 @@ def getSeason(request,pk,season_ind):
     season_index = season_ind
     comments = SeriesComments.objects.filter(series=pk)
     filter = series_files.get(series_index=1)
-    return render(request, 'Series/series_view.html',{'series': series, 'categories': categories, 'season_index':season_index, 'episode':filter, 'actors': actors, 'seasons':seasons, 'series_files':series_files, 'comments':comments})
+    return render(request, 'Series/series_view.html',{'series': series, 'categories': categories, 'season_index':season_index, 'episode_one':filter, 'actors': actors, 'seasons':seasons, 'series_files':series_files, 'comments':comments})
 
 def getEpisode(request,pk,episode_ind,season_ind):
     try:
@@ -125,7 +127,10 @@ def getEpisode(request,pk,episode_ind,season_ind):
     season_index = season_ind
     comments = SeriesComments.objects.filter(series=pk)
     filter = series_files.get(series_index = episode_ind)
-    return render(request, 'Series/series_view.html',{'series': series, 'categories': categories, 'season_index':season_index, 'episode':filter, 'actors': actors, 'seasons':seasons, 'series_files':series_files, 'comments':comments})
+    filter = json.dumps(str(filter.series_file))
+    filter = filter.replace('"','')
+    filter = '/media/' + filter
+    return JsonResponse(filter,safe=False)
 def categorySeriesView(request, pk):
     try:
         categories = Categories.objects.get(pk=pk)

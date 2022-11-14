@@ -3,19 +3,21 @@
 {% block title %}Главная{% endblock %}
 
 {% block content %}
+<div class="observable">
 <!--ko foreach: films-->
-<div class="d-inline-flex p-2" >
-    <a data-bind="attr:{href: /film/ + id}">
-        <img data-bind="attr:{src: {{MEDIA_URL}} + film_preview}"  width="300" height="450" class="rounded">
-    </a>
+    <div class="d-inline-flex p-2" >
+        <a data-bind="attr:{href: /film/ + id}">
+            <img data-bind="attr:{src: {{MEDIA_URL}} + film_preview}"  width="300" height="450" class="rounded">
+        </a>
+    </div>
+    <!--/ko-->
+    <!--ko foreach: series-->
+    <div class="d-inline-flex p-2 observable">
+        <a data-bind="attr:{href: /series/ + id }">
+            <img data-bind="attr:{src: {{MEDIA_URL}} + series_preview}"  width="300" height="450" class="rounded">
+        </a>
+    </div>
+    <!--/ko-->
 </div>
-<!--/ko-->
-<!--ko foreach: series-->
-<div class="d-inline-flex p-2 observable">
-    <a data-bind="attr:{href: /series/ + id }">
-        <img data-bind="attr:{src: {{MEDIA_URL}} + series_preview}"  width="300" height="450" class="rounded">
-    </a>
-</div>
-<!--/ko-->
 {% include 'includes/pagination.html' %}
 {% endblock %}

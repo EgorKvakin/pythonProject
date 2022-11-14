@@ -51,19 +51,21 @@
                 height="700"
                 poster="{{ MEDIA_URL }}{{ series.series_preview }}"
                 data-setup="{}"
+                data-bind="attr:{src:episode}"
         >
         {% block video %}
-            {% if episode == undefined %}
+            <!--if:episode != ''-->
+               <source  data-bind="attr:{src:episode}" type="video/mp4"/>
+            <!--/ko-->
+            <!--if:episode == ''-->
                 <source src="{{ MEDIA_URL }}{{ episode_one.series_file }}" type="video/mp4"/>
-            {% else %}
-                <source src="{{ MEDIA_URL }}{{ episode.series_file }}" type="video/mp4"/>
-            {% endif %}
+            <!--/ko-->
         {% endblock %}
         </video>
         <div class="btn-group me-2" role="group" aria-label="Basic outlined example">
         {% for file in series_files %}
-            <li type="button" class="btn btn-secondary" >
-                <a style="color:#D3D3D3; text-decoration:none" href="{% url 'getepisode' series.pk file.series_index season_index %}" >Серия {{ forloop.counter }}</a>
+            <li type="button" class="btn btn-secondary episode" data-href="{% url 'getepisode' series.pk file.series_index season_index %}">
+                Серия {{ forloop.counter }}
             </li>
         {% endfor %}
         </div>
@@ -79,5 +81,4 @@
        <p>{{comment.author}} {{comment.comment}}</p>
     {% endfor %}
 </div>
-<script src="{% static 'js/series_choice.js' %}"></script>
 {% endblock %}
