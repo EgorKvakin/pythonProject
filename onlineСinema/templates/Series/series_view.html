@@ -64,7 +64,11 @@
         </video>
         <div class="btn-group me-2" role="group" aria-label="Basic outlined example">
         {% for file in series_files %}
-            <li type="button" class="btn btn-secondary episode" data-href="{% url 'getepisode' series.pk file.series_index season_index %}">
+            {% if forloop.counter == 1 %}
+                <li type="button" class="btn btn-secondary episode active" data-href="{% url 'getepisode' series.pk file.series_index season_index %}">
+            {% else %}
+                <li type="button" class="btn btn-secondary episode" data-href="{% url 'getepisode' series.pk file.series_index season_index %}">
+            {% endif %}
                 Серия {{ forloop.counter }}
             </li>
         {% endfor %}

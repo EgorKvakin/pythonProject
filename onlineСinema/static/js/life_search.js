@@ -35,6 +35,10 @@ let episode = (evt) => {
     });
     videoNode = videojs('my-video');
     videoNode.load()
+    if (document.querySelector("li.episode.active") != null){
+        document.querySelector("li.episode.active").classList.remove("active")
+    }
+    evt.target.closest("li.episode").classList.add("active")
 }
 
 elem = document.querySelectorAll("li.episode")
