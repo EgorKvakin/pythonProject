@@ -77,22 +77,38 @@
             </form>
             {% if user.is_authenticated %}
             <a href="{% url 'logout' %}">
-                <button type="button" class="btn btn-dark">Logout</button>
+                <button type="button" class="btn btn-dark">Выйти</button>
             </a>
             {% else %}
             <a href="{% url 'login' %}">
-                <button type="button" class="btn btn-dark">Login</button>
+                <button type="button" class="btn btn-dark">Войти</button>
             </a>
             <a href="{% url 'signup' %}">
-                <button type="button" class="btn btn-dark">Sign up</button>
+                <button type="button" class="btn btn-dark">Зарегестрироваться</button>
             </a>
             {% endif %}
         </div>
     </nav>
 </header>
-<div class="container-fluid">
-    {% block content %}
-    {% endblock %}
+<div class="grid container-fluid">
+    {% if user.is_authenticated %}
+        {% block content %}
+        {% endblock %}
+    {% else %}
+        {% block auth %}
+        {% endblock %}
+        {% block login %}
+        {% endblock %}
+        <div lass="container-fluid">
+            <p class="text-white">Пожалуйста зарегестрируйтесь или войдите в свой аккаунт</p>
+            <a href="{% url 'login' %}">
+                <button type="button" class="btn btn-dark">Войти</button>
+            </a>
+            <a href="{% url 'signup' %}">
+                <button type="button" class="btn btn-dark">Зарегестрироваться</button>
+            </a>
+        </div>
+    {% endif %}
 </div>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"

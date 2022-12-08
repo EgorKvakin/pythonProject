@@ -1,14 +1,14 @@
 {% extends 'base.html' %}
 {% load crispy_forms_tags %}
-{% block content %}
+{% block auth %}
     {% if user.is_authenticated %}
         <p class="text-light">Your allready registered</p>
     {% else %}
-        <h2 class="h2 text-light">Sign up</h2>
+        <h2 class="h2 text-light">Регистрация</h2>
         <form method="post" class="text-light">
             {% csrf_token %}
             {{ form|crispy }}
-            <button type="submit">Sign up</button>
+            <button type="submit">Зарегестрироваться</button>
         </form>
     {% endif %}
 {% endblock %}

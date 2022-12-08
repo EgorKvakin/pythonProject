@@ -4,7 +4,7 @@
 
 {% block content %}
 <div class="container d-flex p-2">
-    <div class="card float-left bg-light " style="width: 25rem;">
+    <div class="float-left" style="width: 25rem;">
         <img class="card-img-top" src="{{ MEDIA_URL }}{{ film.film_preview }}" alt="Card image cap">
     </div>
     <div class="container d-flex p-2">
@@ -52,7 +52,8 @@
 <div class="container">
     <form method="post" action="{% url 'add_film_review' film.pk user.pk %}">
         {% csrf_token %}
-        <input name="comment"/>
+        <label for="comment_add" class="form-label text-white">Оставьте комментарий</label>
+        <input class="form-control" name="comment" id="comment_add"/>
         <button type="submit">Отправить</button>
     </form>
     {% for comment in comments %}
