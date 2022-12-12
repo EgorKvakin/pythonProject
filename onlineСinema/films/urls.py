@@ -5,6 +5,12 @@ from . import views
 urlpatterns = [
     path('', views.filmView, name='main'),
     path('get_data_films/',views.getDataFilms, name='get_data_films'),
+    path('comment_film_delete/<int:pk>', views.deleteCommentFilm, name='comment_film_delete'),
+    path('comment_series_delete/<int:pk>', views.deleteCommentSeries, name='comment_series_delete'),
+    path('comment_film_edit/<int:comment_pk>/<int:pk>', views.editCommentToggleFilm, name='film_comment_toggle'),
+    path('edit_comment/<int:edit_comment>/<int:pk>', views.editComment, name='film_edit_comment'),
+    path('comment_series_edit/<int:comment_pk>/<int:pk>', views.editCommentToggleSeries, name='series_comment_toggle'),
+    path('edit_comment_series/<int:edit_comment>/<int:pk>', views.editCommentSeries, name='series_edit_comment'),
     path('get_data_series/',views.getDataSeries, name='get_data_series'),
     path('film/<int:pk>/', views.movieView, name = 'movie_view'),
     path('series/<int:pk>/', views.seriesView, name = 'series_view'),

@@ -1,6 +1,7 @@
 from django.http import Http404, HttpResponseRedirect
 from django.core import serializers
 from django.shortcuts import render, HttpResponse , redirect
+from django.template.loader import get_template
 from django.views.generic import TemplateView, ListView, View
 from datetime import datetime
 from django.core.paginator import Paginator
@@ -184,4 +185,60 @@ class SeriesAddRewiew(View):
             form.author = author
             form.save()
         url = f'/series/{series_pk}'
+        return redirect(url)
+
+def deleteCommentFilm(request, pk):
+    selected_comment = FilmComments.objects.get(pk = pk)
+    selected_comment.delete()
+    url = request.META.get('HTTP_REFERER')
+    return redirect(url)
+
+def deleteCommentSeries(request, pk):
+    selected_comment = SeriesComments.objects.get(pk = pk)
+    selected_comment.delete()
+    url = request.META.get('HTTP_REFERER')
+    return  redirect(url)
+    return redirect(url)
+
+def editCommentToggleFilm(request,comment_pk,pk):
+    try:
+        edit_comment = comment_pk
+    except:
+        edit_comment = None
+    film = Film.objects.get(id=pk)
+    categories = Film.objects.get(pk=pk).film_list.all()
+    actors = Film.objects.get(pk=pk).actor_film_list.all()
+    comments = FilmComments.objects.filter(film = pk)
+    return render(request, 'Films/film_view.html', {'film': film, 'categories': categories, 'actors': actors, 'comments':comments, 'edit_comment': edit_comment})
+
+def editComment(request,edit_comment,pk):
+        comment=FilmComments.objects.get(id=edit_comment)
+        new_comment = request.POST.get('new_comment')
+        comment.comment=new_comment
+        comment.save()
+        url = f'/film/{pk}/'
+        return redirect(url)
+
+def editCommentToggleSeries(request,comment_pk,pk):
+    try:
+        edit_comment = comment_pk
+    except:
+        edit_comment = None
+    series = Series.objects.get(id=pk)
+    categories = Series.objects.get(pk=pk).film_list.all()
+    actors = Series.objects.get(pk=pk).actor_film_list.all()
+    seasons = Seasons.objects.filter(season_ind=pk)
+    season_first = Seasons.objects.filter(season_ind=pk).first()
+    season_index = season_first.pk
+    series_files = SeriesVideo.objects.filter(series_ind = season_index)
+    episode_one = series_files.get(series_index = 1)
+    comments = SeriesComments.objects.filter(series=pk)
+    return render(request, 'Series/series_view.html', {'series': series, 'categories': categories, 'actors': actors, 'season_index':season_index, 'seasons':seasons, 'series_files':series_files, 'episode_one': episode_one, 'comments':comments, 'edit_comment': edit_comment})
+
+def editCommentSeries(request,edit_comment,pk):
+        comment=SeriesComments.objects.get(id=edit_comment)
+        new_comment = request.POST.get('new_comment')
+        comment.comment=new_comment
+        comment.save()
+        url = f'/series/{pk}/'
         return redirect(url)

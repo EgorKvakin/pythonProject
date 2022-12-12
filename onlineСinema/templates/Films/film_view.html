@@ -57,7 +57,20 @@
         <button type="submit">Отправить</button>
     </form>
     {% for comment in comments %}
-       <p>{{comment.author}} {{comment.comment}}</p>
+    {% if edit_comment == comment.pk %}
+        <form action="{% url 'film_edit_comment' edit_comment film.pk %}" method="post">{%csrf_token%}
+        <textarea name="new_comment">{{comment.comment|safe}}</textarea>
+        <input type="submit" name="post" class="submit-post" value="Отправить"/>
+        </form>
+    {% else %}
+        <div>
+        <p class="lead text-white">{{comment.author}} {{comment.comment}}</p>
+        {% if comment.author == user %}
+        <button><a style="color:#2F4F4F; text-decoration:none" href="{% url 'comment_film_delete' comment.pk %}">Удалить</a></button>
+        <button><a style="color:#2F4F4F; text-decoration:none" href="{% url 'film_comment_toggle' comment.pk film.pk %}">Редактировать</a></button>
+        {% endif %}
+        </div>
+    {% endif %}
     {% endfor %}
 </div>
 {% endblock %}
